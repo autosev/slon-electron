@@ -1,0 +1,35 @@
+// @see - https://www.electron.build/configuration/configuration
+{
+  $schema: 'https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json',
+  appId: 'ru.autopilot-sev.slon-electron',
+  asar: true,
+  forceCodeSigning: false,
+  icon: 'public/icon',
+  directories: {
+    output: 'release',
+  },
+  files: ['dist', 'dist-electron'],
+  extraResources: [
+    { from: 'public/icon.ico', to: 'icon.ico' },
+    { from: 'public/icon.png', to: 'icon.png' },
+    { from: 'public/icon.icns', to: 'icon.icns' },
+  ],
+  win: {
+    target: [
+      {
+        target: 'squirrel',
+        arch: ['x64'],
+      },
+    ],
+    artifactName: '${name}-${version}-${arch}.${ext}',
+  },
+  squirrelWindows: {
+    iconUrl: 'https://sb.autopilot-sev.ru/storage/v1/object/public/slon-releases/icons/icon.ico',
+    loadingGif: 'public/installer.gif',
+  },
+  linux: {
+    target: ['AppImage'],
+    artifactName: '${name}-Linux-${version}.${ext}',
+    category: 'Office',
+  },
+}
