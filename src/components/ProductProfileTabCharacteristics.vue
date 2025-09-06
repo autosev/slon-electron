@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Select, InputNumber } from 'primevue'
+import { Select, InputNumber, InputText } from 'primevue'
 
 const injected = inject<{
   productItem: Ref<ProductItem>
@@ -12,7 +12,9 @@ if (!injected) {
 const { productItem, updateProductTypeId, updateProductProperty } = injected
 const characteristicsScheme = ref<CharacteristicField[]>([])
 
-const availableComponents = { Select, InputNumber } as { [key: string]: Component }
+const availableComponents = { Select, InputNumber, InputText } as {
+  [key: string]: Component
+}
 
 watchEffect(() => {
   const productType = ProductTypes.findOne(
