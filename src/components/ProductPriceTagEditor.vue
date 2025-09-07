@@ -9,7 +9,10 @@ const { items } = storeToRefs(priceTagStore)
 
 const { getUserStock } = useOrganizationStore()
 
-const selectedStockId = ref(getUserStock()?.id || null)
+const clientStore = useClientStore()
+const { currentEmployee } = storeToRefs(clientStore)
+
+const selectedStockId = ref(currentEmployee.value?.stock_id ?? null)
 
 const PRICE_TAG_WIDTH = 85
 const PRICE_TAG_HEIGHT = 40
