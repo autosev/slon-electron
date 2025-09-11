@@ -136,6 +136,7 @@ watchEffect((onCleanup) => {
         showIcon
         showButtonBar
         class="w-60"
+        @clearClick="dateRange = createDateRange()"
       />
       <StockSelect v-model:id="stockId" class="min-w-32" />
       <FloatLabel variant="on">
