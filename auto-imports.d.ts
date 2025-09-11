@@ -6,6 +6,7 @@
 // biome-ignore lint: disable
 export {}
 declare global {
+  const AccountingPeriodDatas: typeof import('./src/models/AccountingPeriodDatas')['default']
   const Cities: typeof import('./src/models/Cities')['default']
   const Collection: typeof import('@signaldb/core')['Collection']
   const Collections: typeof import('./src/models/Collections')['default']

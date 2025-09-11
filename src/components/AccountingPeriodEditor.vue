@@ -1,44 +1,63 @@
 <script lang="ts" setup>
-const selectedDate = ref(new Date())
-const periods = ref([
-  {
-    id: 1,
-    date: 'Июнь 2025',
-    status: 'Закрыт',
-    closed_at: '30.06.2025',
-    closed_by: 'c0f98717-fb49-4b78-922f-95affdf7062d',
-  },
-  {
-    id: 2,
-    date: 'Июль 2025',
-    status: 'Открыт',
-    closed_at: '-',
-    closed_by: null,
-  },
-  {
-    id: 3,
-    date: 'Август 2025',
-    status: 'Открыт',
-    closed_at: '-',
-    closed_by: null,
-  },
-])
+const periods = ref<AccountingPeriodData[]>([])
 
-const firstOpenPeriod = computed(() => periods.value.find((period) => period.status === 'Открыт'))
+const dayjs = useDayjs()
+
+const firstOpenPeriod = computed(() =>
+  periods.value.findLast((period) => period.is_closed === false),
+)
+
+function formatDate(dateString: string) {
+  return dayjs(dateString).format('MMMM YYYY')
+}
+
+watchEffect((onCleanup) => {
+  const accountingPeriodDatasCursor = AccountingPeriodDatas.find(
+    {},
+    {
+      sort: {
+        closed_until_date: -1,
+      },
+    },
+  )
+  periods.value = accountingPeriodDatasCursor.fetch() ?? []
+
+  onCleanup(() => {
+    accountingPeriodDatasCursor.cleanup()
+  })
+})
 </script>
 
 <template>
   <div class="flex flex-col">
     <Fieldset legend="История">
-      <DataTable :value="periods" size="small">
+      <DataTable
+        :value="periods"
+        size="small"
+        scrollable
+        scrollHeight="250px"
+        :virtualScrollerOptions="{ itemSize: 33 }"
+      >
         <Column class="!text-center">
           <template #body="{ data }">
             <i v-if="data.id === firstOpenPeriod?.id" class="pi pi-asterisk !text-xs"></i>
           </template>
         </Column>
-        <Column field="date" header="Период"></Column>
-        <Column field="status" header="Статус"></Column>
-        <Column field="closed_at" header="Дата закрытия"></Column>
+        <Column field="closed_until_date" header="Период" class="capitalize">
+          <template #body="{ data }">
+            {{ formatDate(data.closed_until_date) }}
+          </template>
+        </Column>
+        <Column field="is_closed" header="Статус">
+          <template #body="{ data }">
+            {{ data.is_closed ? 'Закрыт' : 'Открыт' }}
+          </template>
+        </Column>
+        <Column field="closed_at" header="Дата закрытия">
+          <template #body="{ data }">
+            {{ data.closed_at ? data.closed_at : '-' }}
+          </template>
+        </Column>
         <Column field="closed_by" style="width: 32px">
           <template #body="{ data }">
             <EmployeeAvatar v-if="data.closed_by" :id="data.closed_by" :size="16" />
@@ -47,15 +66,21 @@ const firstOpenPeriod = computed(() => periods.value.find((period) => period.sta
       </DataTable>
     </Fieldset>
 
-    <Fieldset legend="Операция">
+    <Fieldset v-if="firstOpenPeriod" legend="Операция">
       <Message size="small" severity="warn" icon="pi pi-exclamation-triangle">
-        После закрытия периода все операции до 31.07.2025 (включительно) будут заблокированы для
-        редактирования.
+        После закрытия периода все операции до
+        {{ dayjs(firstOpenPeriod.closed_until_date).format('L') }} (включительно) будут
+        заблокированы для редактирования.
       </Message>
-      <div v-if="firstOpenPeriod" class="flex gap-4 mt-5">
+      <div class="flex gap-4 mt-5">
         <div class="w-1/2">
           <FloatLabel variant="on">
-            <InputText :model-value="firstOpenPeriod.date" disabled fluid />
+            <InputText
+              :model-value="formatDate(firstOpenPeriod.closed_until_date)"
+              class="capitalize"
+              disabled
+              fluid
+            />
             <label for="on_label">Период</label>
           </FloatLabel>
         </div>

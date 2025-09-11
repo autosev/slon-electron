@@ -124,4 +124,12 @@ declare global {
     InvoiceExpenditureEditor,
     InvoiceExpenditureItemEditor
   >
+
+  interface AccountingPeriodData {
+    id: string
+    closed_until_date: string
+    is_closed: boolean
+    created_by: Employee['id']
+    created_at: string
+  }
 }

@@ -46,7 +46,6 @@ function openEditDialog(
   hasSubmenu: boolean,
   sortOrder: number,
 ) {
-  console.log(parentId)
   const dialogRef = dialog.open(
     h(CollectionCreate, {
       updateId,
