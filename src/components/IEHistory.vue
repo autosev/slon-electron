@@ -1,8 +1,4 @@
 <script lang="ts" setup>
-const emit = defineEmits<{
-  (e: 'open', invoice: InvoiceExpenditureDocumentEditor): void
-}>()
-
 const dayjs = useDayjs()
 
 const { selectedStockId } = storeToRefs(useTableStore())
