@@ -107,7 +107,7 @@ function goBack() {
         enter-from-class="opacity-0"
         leave-to-class="opacity-0"
       >
-        <div v-if="currentPageIndex === 0" class="flex flex-col gap-3 w-full sm:w-56">
+        <div v-if="currentPageIndex === 0" class="flex flex-col gap-3 w-64">
           <div class="card flex justify-center">
             <InputMask
               inputId="on_label_phone"
@@ -121,6 +121,8 @@ function goBack() {
           <Button
             type="submit"
             label="Далее"
+            iconPos="right"
+            icon="pi pi-arrow-right"
             @click="submitPhone"
             :loading="isLoading"
             :disabled="phoneStrip(userPhone).length !== 11"
@@ -130,7 +132,8 @@ function goBack() {
             v-if="users.length > 0"
             type="submit"
             severity="secondary"
-            label="Выбрать сотрудника"
+            label="Выбрать пользователя"
+            icon="pi pi-users"
             @click="router.push({ name: 'welcome' })"
             :disabled="isLoading"
           />

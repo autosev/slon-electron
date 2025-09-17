@@ -1,5 +1,12 @@
 export {}
 
+export interface IServer {
+  id: string // Уникальный идентификатор UUID
+  name: string
+  apiUrl: string
+  anonKey: string
+}
+
 declare global {
   interface SidebarItem {
     title: string

@@ -16,27 +16,26 @@ const { syncManager } = useSignalDB()
 const dialog = useDialog()
 const route = useRoute()
 
+const { servers } = useServers()
+
 const statusMenu = useTemplateRef('statusMenu')
-const statusMenuOptions = computed(
-  () =>
-    [
+const statusMenuOptions = computed<MenuItem[]>(() => [
+  {
+    label: 'Статус подключений',
+    items: [
       {
-        label: 'Статус подключений',
-        items: [
-          {
-            label: 'Клиент',
-            icon: 'pi pi-globe',
-            status: isClientOnline.value,
-          },
-          {
-            label: 'Сервер',
-            icon: 'pi pi-server',
-            status: isClientOnline.value === true ? isServerOnline.value : null,
-          },
-        ],
+        label: 'Клиент',
+        icon: 'pi pi-globe',
+        status: isClientOnline.value,
       },
-    ] as MenuItem[],
-)
+      {
+        label: 'Сервер',
+        icon: 'pi pi-server',
+        status: isClientOnline.value === true ? isServerOnline.value : null,
+      },
+    ],
+  },
+])
 
 function showStatusMenu(event: Event) {
   statusMenu.value?.toggle(event)
@@ -91,6 +90,9 @@ function openReleaseNotesDialog() {
 onMounted(() => {
   updateClientOnlineStatus()
 
+  const { loadServers } = useServers()
+  loadServers()
+
   const { supabase } = useSupabase()
   supabase.auth.onAuthStateChange((event, session) => {
     if (event === 'SIGNED_IN') {
@@ -102,11 +104,12 @@ onMounted(() => {
     }
   })
 
-  window.addEventListener('online', () => {
-    syncManager.syncAll()
-    updateClientOnlineStatus()
-  })
-  window.addEventListener('offline', updateClientOnlineStatus)
+  // window.addEventListener('online', () => {
+  //   syncManager.syncAll()
+  //   updateClientOnlineStatus()
+  // })
+
+  // window.addEventListener('offline', updateClientOnlineStatus)
 
   if (getClientVersion() !== version) {
     setClientVersion(version)
@@ -120,6 +123,7 @@ onUnmounted(() => {
 </script>
 
 <template>
+  <!-- {{ servers }} -->
   <DynamicDialog />
   <ConfirmDialog />
   <Toast position="top-center" />

@@ -1,8 +1,9 @@
-import { app, BrowserWindow, Menu, Tray, MenuItemConstructorOptions } from 'electron'
+import { app, BrowserWindow, Menu, Tray, MenuItemConstructorOptions, ipcMain } from 'electron'
 import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import { makeUserNotifier, updateElectronApp, UpdateSourceType } from 'update-electron-app'
 import path from 'node:path'
+import Store from 'electron-store'
 
 const require = createRequire(import.meta.url)
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -232,4 +233,16 @@ app.on('before-quit', () => {
 // При завершении через Ctrl+C
 process.on('SIGINT', () => {
   app.quit()
+})
+
+const store = new Store()
+
+// Обработчик для получения значения из хранилища
+ipcMain.handle('electron-store-get', async (event, key) => {
+  return store.get(key)
+})
+
+// Обработчик для сохранения значения в хранилище
+ipcMain.handle('electron-store-set', async (event, key, value) => {
+  store.set(key, value)
 })

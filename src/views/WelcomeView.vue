@@ -50,28 +50,62 @@ function afterUserPasswordDialogHide() {
 
 onMounted(() => {
   if (users.value.length === 0) {
-    router.push({ name: 'login' })
+    router.push({ name: 'user-login' })
   }
 })
 </script>
 
 <template>
   <div class="flex w-full h-full">
-    <div class="flex flex-col w-2/6 bg-slate-100 justify-center items-center text-center">
-      <h1 class="font font-medium">Добрый день</h1>
-      <span class="text-slate-600 px-4">Выберите сотрудника из списка или добавьте нового</span>
-      <Message size="small" icon="pi pi-exclamation-triangle" severity="warn" class="mt-4 mx-10">
-        Система учёта находится в стадии тестирования. Данные в программе не являются актуальными.
-      </Message>
+    <div class="flex flex-col w-2/6 bg-slate-100 justify-center items-center text-center gap-4">
+      <i class="pi pi-users !text-2xl"></i>
+      <div>
+        <h1 class="font font-medium">Добрый день</h1>
+        <span class="text-slate-600 px-4">Выберите пользователя из списка или добавьте нового</span>
+        <Message size="small" icon="pi pi-exclamation-triangle" severity="warn" class="mt-4 mx-10">
+          Система учёта находится в стадии тестирования. Данные в программе не являются актуальными.
+        </Message>
+      </div>
     </div>
     <div class="card flex w-4/6 justify-center items-center">
-      <div class="flex flex-col gap-4 w-full sm:w-56">
-        <div class="card flex justify-center">
+      <div class="flex flex-col gap-4 w-full sm:w-64">
+        <InputGroup>
+          <InputGroupAddon>
+            <i class="pi pi-server"></i>
+          </InputGroupAddon>
+          <FloatLabel variant="on">
+            <Select
+              value="sb.autopilot-sev.ru"
+              :options="['sb.autopilot-sev.ru']"
+              icon="pi pi-server"
+              id="server"
+            >
+              <template #footer>
+                <div class="p-1">
+                  <Button
+                    label="Добавить новый"
+                    fluid
+                    severity="secondary"
+                    variant="text"
+                    size="small"
+                    icon="pi pi-plus"
+                    @click="router.push({ name: 'server' })"
+                  />
+                </div>
+              </template>
+            </Select>
+            <label for="server">Сервер</label>
+          </FloatLabel>
+        </InputGroup>
+
+        <Divider />
+
+        <div class="flex justify-center">
           <Listbox
             v-model="selectedUser"
             :options="users"
             optionLabel="name"
-            class="w-full md:w-56"
+            class="w-full"
             :filter="users.length > 5"
             filterPlaceholder="Найти себя"
           >
@@ -79,13 +113,14 @@ onMounted(() => {
               <EmployeeAvatar :id="option.id" :size="28" class="mr-2" />
               {{ option.name }}
             </template>
-            <template #empty> Нет добавленных сотрудников. </template>
+            <template #empty> Нет добавленных пользователей. </template>
           </Listbox>
         </div>
         <div>
           <Button
             type="submit"
             label="Войти"
+            icon="pi pi-sign-in"
             :disabled="selectedUser === null"
             @click="submit"
             fluid
@@ -93,10 +128,11 @@ onMounted(() => {
           <Button
             type="submit"
             severity="secondary"
-            label="Добавить сотрудника"
+            label="Добавить пользователя"
+            icon="pi pi-user-plus"
             class="mt-3"
             fluid
-            @click="router.push({ name: 'login' })"
+            @click="router.push({ name: 'user-login' })"
           />
         </div>
       </div>

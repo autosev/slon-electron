@@ -21,7 +21,13 @@ declare namespace NodeJS {
   }
 }
 
+interface IElectronStore {
+  get: (key: string) => Promise<any>
+  set: (key: string, value: any) => Promise<void>
+}
+
 // Used in Renderer process, expose in `preload.ts`
 interface Window {
   ipcRenderer: import('electron').IpcRenderer
+  electronStore: IElectronStore
 }

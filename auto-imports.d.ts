@@ -116,6 +116,8 @@ declare global {
   const usePriceTagStore: typeof import('./src/stores/price-tag')['usePriceTagStore']
   const useRoute: typeof import('vue-router')['useRoute']
   const useRouter: typeof import('vue-router')['useRouter']
+  const useServer: typeof import('./src/composables/server')['useServer']
+  const useServers: typeof import('./src/composables/servers')['useServers']
   const useSignalDB: typeof import('./src/composables/signaldb')['useSignalDB']
   const useSlots: typeof import('vue')['useSlots']
   const useSupabase: typeof import('./src/composables/supabase')['useSupabase']

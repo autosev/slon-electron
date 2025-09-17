@@ -22,3 +22,9 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
   // You can expose other APTs you need here.
   // ...
 })
+
+contextBridge.exposeInMainWorld('electronStore', {
+  get: (key: string) => ipcRenderer.invoke('electron-store-get', key),
+  set: (key: string, value: any) => ipcRenderer.invoke('electron-store-set', key, value),
+  // При желании можно добавить и другие методы, например, delete
+})
