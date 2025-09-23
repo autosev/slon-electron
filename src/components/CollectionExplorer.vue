@@ -124,7 +124,8 @@ function onRowContextMenu(event: any, item: MenuItem) {
         size="small"
         v-tooltip.bottom="{ value: 'Архив' }"
         :class="{
-          '!bg-yellow-50 !text-amber-400 !border-amber-400': selectedCollectionId === null,
+          '!bg-yellow-50 dark:!bg-yellow-950 !text-amber-400 !border-amber-400':
+            selectedCollectionId === null,
         }"
         @click="setSelectedCollectionId(null)"
         rounded
@@ -148,8 +149,8 @@ function onRowContextMenu(event: any, item: MenuItem) {
       class="w-full"
       :pt="{
         root: '!gap-0',
-        rootlist: '!ml-6 border-l border-slate-200 !p-0',
-        submenu: '!ml-4 border-l border-slate-200 !p-0',
+        rootlist: '!ml-6 border-l border-surface !p-0',
+        submenu: '!ml-4 border-l border-surface !p-0',
         contentcontainer: '!transition-none	',
       }"
       multiple
@@ -160,8 +161,9 @@ function onRowContextMenu(event: any, item: MenuItem) {
           class="flex items-center px-4 py-2 cursor-pointer group select-none"
           :class="{
             'pl-6': root === true,
-            'bg-yellow-50 border-l border-amber-400': Number(item.key) === selectedCollectionId,
-            'border-l border-transparent hover:bg-slate-50':
+            'bg-yellow-50 dark:bg-yellow-950 border-l border-amber-400':
+              Number(item.key) === selectedCollectionId,
+            'border-l border-transparent hover:bg-surface-50 dark:hover:bg-surface-800':
               Number(item.key) !== selectedCollectionId,
           }"
           @click="setSelectedCollectionId(Number(item.key), item.has_submenu)"
@@ -169,7 +171,7 @@ function onRowContextMenu(event: any, item: MenuItem) {
         >
           <span
             :class="[
-              'pi text-primary ',
+              'pi',
               active && item.has_submenu ? 'pi-folder-open' : 'pi-folder',
               item.has_submenu ? 'text-emerald-400' : 'text-amber-400',
             ]"

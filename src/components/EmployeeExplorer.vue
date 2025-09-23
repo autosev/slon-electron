@@ -77,7 +77,7 @@ function openCreateEmployeeDialog() {
       <template v-for="(option, index) in employeeOptions">
         <template v-if="option.employees.length > 0">
           <div :class="{ 'mt-3': index !== 0 }">
-            <span class="font-semibold text-slate-500">
+            <span class="font-semibold text-muted-color">
               {{ option.address }}
             </span>
           </div>
@@ -85,7 +85,7 @@ function openCreateEmployeeDialog() {
             <div
               v-for="employee in option.employees"
               :key="employee.id"
-              class="flex gap-3 items-center cursor-pointer border rounded-lg p-3 border-slate-300 hover:border-slate-500 bg-slate-50"
+              class="flex gap-3 items-center cursor-pointer border rounded-lg p-3 border-surface hover:border-surface-500 bg-surface-50 dark:bg-surface-900"
               @click="openEmployeeProfile(employee.id)"
             >
               <div>
@@ -94,7 +94,7 @@ function openCreateEmployeeDialog() {
               <div>
                 <span>{{ employee.first_name }} {{ employee.last_name }}</span>
                 <br />
-                <span class="flex gap-1 items-center text-slate-400 text-xs"> В сети </span>
+                <span class="flex gap-1 items-center text-muted-color text-xs"> В сети </span>
               </div>
             </div>
           </div>

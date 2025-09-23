@@ -7,11 +7,13 @@ const users = ref(getUsers()) // getServers
 
 <template>
   <div class="flex w-full h-full">
-    <div class="flex flex-col w-2/6 bg-slate-100 justify-center items-center gap-4">
+    <div
+      class="flex flex-col w-2/6 bg-slate-100 dark:bg-surface-900 justify-center items-center gap-4"
+    >
       <i class="pi pi-server !text-2xl"></i>
       <div>
         <h1 class="font font-medium text-center">Начальная настройка</h1>
-        <p class="text-slate-600 text-center">
+        <p class="text-muted-color text-center">
           Подключитесь к своему облачному серверу или создайте новый. <br />
         </p>
       </div>

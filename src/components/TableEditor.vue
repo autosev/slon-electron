@@ -47,23 +47,61 @@ const contextMenuItems = ref<MenuItem[]>([])
 
 const { toCurrencyPrice } = useTools()
 
-const editorTheme = themeQuartz.withPart(iconSetMaterial).withParams({
-  borderRadius: 6,
-  browserColorScheme: 'light',
-  columnBorder: true,
-  fontFamily: 'inherit',
-  textColor: 'var(--p-slate-700)',
-  backgroundColor: '#fff',
-  headerFontSize: '1rem',
-  headerFontWeight: 600,
-  headerHeight: 32,
-  rowHeight: 32,
-  wrapperBorderRadius: 0,
-  borderColor: 'var(--p-slate-200)',
-  rangeSelectionBorderColor: 'var(--p-primary-color)',
-  rowHoverColor: 'transparent',
-  selectedRowBackgroundColor: 'var(--p-slate-100)',
-})
+const editorTheme = themeQuartz
+  .withPart(iconSetMaterial)
+  .withParams(
+    {
+      borderRadius: 6,
+      browserColorScheme: 'light',
+      // columnBorder: true,
+      fontFamily: 'inherit',
+      textColor: 'var(--p-text-color)',
+      backgroundColor: 'var(--p-surface-0)',
+      headerFontSize: '1rem',
+      headerFontWeight: 600,
+      headerHeight: 32,
+      rowHeight: 32,
+      wrapperBorderRadius: 0,
+      borderColor: 'var(--p-content-border-color)',
+      rowBorder: { color: 'var(--p-content-border-color)' },
+      columnBorder: { color: 'var(--p-content-border-color)' },
+      rangeSelectionBorderColor: 'var(--p-primary-color)',
+      rowHoverColor: 'var(--p-surface-100)',
+      selectedRowBackgroundColor: 'var(--p-content-border-color)',
+      buttonActiveBackgroundColor: 'var(--p-primary-color)',
+      iconButtonActiveBackgroundColor: 'var(--p-primary-color)',
+      iconButtonActiveColor: 'var(--p-primary-contrast-color)',
+      iconButtonActiveIndicatorColor: 'var(--p-primary-contrast-color)',
+    },
+    'app-light',
+  )
+  .withParams(
+    {
+      borderRadius: 6,
+      browserColorScheme: 'dark',
+      // columnBorder: true,
+      fontFamily: 'inherit',
+      textColor: 'var(--p-text-color)',
+      backgroundColor: 'var(--p-surface-950)',
+      headerFontSize: '1rem',
+      headerFontWeight: 600,
+      headerHeight: 32,
+      rowHeight: 32,
+      wrapperBorderRadius: 0,
+      borderColor: 'var(--p-content-border-color)',
+      rowBorder: { color: 'var(--p-content-border-color)' },
+      columnBorder: { color: 'var(--p-content-border-color)' },
+      rangeSelectionBorderColor: 'var(--p-primary-color)',
+      rowHoverColor: 'var(--p-surface-900)',
+      selectedRowBackgroundColor: 'var(--p-surface-800)',
+      menuBackgroundColor: 'var(--p-surface-900)',
+      buttonActiveBackgroundColor: 'var(--p-primary-color)',
+      iconButtonActiveBackgroundColor: 'var(--p-primary-color)',
+      iconButtonActiveColor: 'var(--p-primary-contrast-color)',
+      iconButtonActiveIndicatorColor: 'var(--p-primary-contrast-color)',
+    },
+    'app-dark',
+  )
 
 const printTheme = themeQuartz.withPart(iconSetMaterial).withParams({
   borderRadius: 0,
@@ -89,8 +127,9 @@ const columnDefs: ComputedRef<ColDef[]> = computed(() => [
     headerClass:
       props.domLayout === 'print'
         ? 'ag-header-index border-r border-black'
-        : 'ag-header-index bg-slate-100 border-r',
-    cellClass: props.domLayout === 'print' ? 'text-center' : 'text-center bg-slate-100',
+        : 'ag-header-index bg-surface-100 dark:bg-surface-900 border-r border-surface',
+    cellClass:
+      props.domLayout === 'print' ? 'text-center' : 'text-center bg-slate-100 dark:bg-surface-900',
     maxWidth: 54,
     suppressMovable: true,
     resizable: false,

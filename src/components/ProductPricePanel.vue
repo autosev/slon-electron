@@ -51,10 +51,10 @@ const maxShipmentPrice = computed(() =>
 <template>
   <div>
     <div
-      class="flex justify-between items-center h-[20px] text-[11px] border-t border-slate-300 cursor-pointer select-none"
+      class="flex justify-between items-center h-[20px] text-[11px] border-t border-surface cursor-pointer select-none"
     >
       <div
-        class="bg-slate-150 hover:bg-slate-50 text-slate-600 hover:text-slate-900 grid h-full w-full items-center"
+        class="bg-surface-150 dark:bg-surface-900 hover:bg-surface-50 dark:hover:bg-surface-800 text-color-emphasis hover:text-surface-900 hover:text-color-emphasis grid h-full w-full items-center"
         @click="emit('showSelected')"
       >
         <span class="truncate px-2" style="width: -webkit-fill-available">
@@ -62,13 +62,13 @@ const maxShipmentPrice = computed(() =>
         </span>
       </div>
       <div
-        class="!w-[20px] h-[20px] flex items-center justify-center bg-slate-200 border-l border-t border-slate-300 text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+        class="!w-[20px] h-[20px] flex items-center justify-center bg-surface-200 dark:bg-surface-900 border-l border-t border-b border-surface text-color hover:text-slate-900 hover:bg-slate-50"
         @click="emit('close')"
       >
         <i class="pi pi-times !text-[11px]"></i>
       </div>
     </div>
-    <div class="h-[65px] bg-slate-200 py-4 px-6 border-t border-slate-300">
+    <div class="h-[65px] bg-surface-200 dark:bg-surface-800 py-4 px-6 border-t border-surface">
       <PropertyList
         :options="[
           { name: 'Приход', value: toCurrencyPrice(maxShipmentPrice) },

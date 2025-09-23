@@ -5,11 +5,17 @@ const props = defineProps<{ id: string; size: number }>()
 </script>
 
 <template>
-  <div class="cursor-pointer">
+  <div class="cursor-pointer border rounded-full border-surface">
     <Avatar
       :name="props.id"
       :size="props.size"
-      :colors="['#1f1f20', '#2b4c7e', '#567ebb', '#606d80', '#dce0e6']"
+      :colors="[
+        'var(--p-primary-800)',
+        'var(--p-primary-600)',
+        'var(--p-primary-300)',
+        'var(--p-primary-400)',
+        'var(--p-primary-900)',
+      ]"
       variant="beam"
     />
   </div>

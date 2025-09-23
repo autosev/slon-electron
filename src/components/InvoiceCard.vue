@@ -29,7 +29,7 @@ const totalPrice = computed(() => {
 
 <template>
   <div
-    class="border rounded p-3 border-slate-200 hover:border-slate-300 hover:bg-slate-50 cursor-pointer"
+    class="border rounded p-3 border-surface bg-surface hover:border-surface-400 dark:hover:border-surface-500 cursor-pointer"
   >
     <InvoiceStatus
       :status="data.invoice.status"

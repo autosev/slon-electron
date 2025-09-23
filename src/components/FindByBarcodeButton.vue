@@ -89,12 +89,13 @@ function findByBarcode() {
       </Message>
     </div>
     <div class="flex justify-end gap-3">
-      <Button type="button" label="Закрыть" severity="secondary" @click="visible = false"></Button>
       <Button
         type="button"
         label="Найти"
         @click="findByBarcode"
+        icon="pi pi-search"
         :disabled="barcode === '' || isInvalid"
+        fluid
       ></Button>
     </div>
   </Dialog>

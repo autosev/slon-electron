@@ -69,7 +69,7 @@ function openDialog() {
     props: {
       modal: true,
       header: selectedPanelTitle,
-      pt: { root: 'w-screen	h-screen !rounded-none	!max-h-max !bg-slate-100' },
+      pt: { root: 'w-screen	h-screen !rounded-none	!max-h-max !bg-surface-100 dark:!bg-surface-900' },
       draggable: false,
     },
     // onClose: () => {
@@ -84,7 +84,7 @@ function openDialog() {
 
 <template>
   <div v-show="selectedPanel !== null">
-    <div class="h-full bg-slate-100 border-t border-b border-slate-200">
+    <div class="h-full bg-surface-100 dark:bg-surface-900 border-t border-b border-surface">
       <div class="flex justify-between items-center h-[64px] px-6">
         <div>
           <h2>{{ selectedPanel?.title }}</h2>

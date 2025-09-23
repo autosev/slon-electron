@@ -41,7 +41,9 @@ function openUserMenu(event: Event) {
 </script>
 
 <template>
-  <div class="w-14 bg-slate-300 flex flex-col justify-between items-center">
+  <div
+    class="w-14 bg-surface-50 dark:bg-surface-950 border-r border-surface flex flex-col justify-between items-center"
+  >
     <div class="flex flex-col items-center">
       <SidebarControllerButton
         v-for="panel in topPositionOptions"

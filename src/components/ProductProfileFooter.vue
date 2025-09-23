@@ -62,15 +62,13 @@ function submitArchive() {
       ></Button>
       <Message
         v-else-if="productItem.collection_id === null"
-        severity="secondary"
+        severity="warn"
         icon="pi pi-exclamation-triangle"
-        class="!bg-white"
       >
         Товар находится в архиве
       </Message>
     </div>
     <div class="flex gap-3">
-      <!-- <Button type="button" label="Закрыть" severity="secondary" @click="closeDialog"></Button> -->
       <Button
         v-if="mode === 'edit'"
         type="button"

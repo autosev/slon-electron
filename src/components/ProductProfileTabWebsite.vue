@@ -137,11 +137,13 @@ onMounted(() => {
             <Card
               v-for="file in productImages.select"
               :key="file.path"
-              class="border !shadow-none rounded-xl"
-              :pt="{ body: 'border-t !p-3' }"
+              class="border border-surface !shadow-none rounded-xl"
+              :pt="{ body: 'border-t border-surface !p-3' }"
             >
               <template #header>
-                <div class="w-full h-auto aspect-square bg-slate-100 rounded-t-xl">
+                <div
+                  class="w-full h-auto aspect-square bg-surface-100 dark:bg-surface-800 rounded-t-xl"
+                >
                   <Image
                     v-if="signedImageUrls.get(file.path)"
                     :src="signedImageUrls.get(file.path)"
@@ -191,7 +193,7 @@ onMounted(() => {
               </template>
             </Card>
           </div>
-          <div v-else class="mt-4 text-center text-slate-500">
+          <div v-else class="mt-4 text-center text-muted-color">
             <p>Перетащите изображения сюда или выберите файлы.</p>
           </div>
         </template>

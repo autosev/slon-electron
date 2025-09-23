@@ -25,11 +25,11 @@ function getVendorById(id: Vendor['id']): Vendor['name'] {
   <div>
     <div class="flex gap-6">
       <div class="flex flex-col">
-        <span class="text-sm text-slate-500">От:</span>
+        <span class="text-sm text-muted-color">От:</span>
         <span>{{ new Date(props.issueDate).toLocaleDateString('ru-RU') }}</span>
       </div>
       <div class="flex flex-col">
-        <span class="text-sm text-slate-500">Склад:</span>
+        <span class="text-sm text-muted-color">Склад:</span>
         <span v-if="typeof props.senderStockId === 'number'">
           {{ getStockById(props.senderStockId)?.address }}
         </span>
@@ -38,11 +38,11 @@ function getVendorById(id: Vendor['id']): Vendor['name'] {
         </span>
       </div>
       <div class="flex flex-col" v-if="props.operation !== null">
-        <span class="text-sm text-slate-500">Операция:</span>
+        <span class="text-sm text-muted-color">Операция:</span>
         <span>{{ getInvoiceOperationName(props.operation) }}</span>
       </div>
       <div v-if="typeof props.vendorId === 'number'" class="flex flex-col">
-        <span class="text-sm text-slate-500">Поставщик:</span>
+        <span class="text-sm text-muted-color">Поставщик:</span>
         <span>{{ getVendorById(props.vendorId) }}</span>
       </div>
       <div
@@ -51,7 +51,7 @@ function getVendorById(id: Vendor['id']): Vendor['name'] {
         "
         class="flex flex-col"
       >
-        <span class="text-sm text-slate-500">Склад-получатель:</span>
+        <span class="text-sm text-muted-color">Склад-получатель:</span>
         <span>{{ getStockById(props.recipientStockId)?.address }}</span>
       </div>
       <div v-if="props.totalPrice !== undefined" class="flex flex-col ml-auto mt-auto">

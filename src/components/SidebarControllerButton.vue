@@ -19,8 +19,10 @@ function setPanel(key: SidebarItem['key'] | null) {
     v-if="props.panel.disabled !== true"
     class="flex w-14 h-14 cursor-pointer"
     :class="{
-      'border-l-2 border-blue-500 text-slate-900 pr-0.5': selectedKey === props.panel.key,
-      'text-slate-500 hover:text-slate-900': selectedKey !== props.panel.key,
+      'border-l-2 border-primary text-surface-900 dark:text-color pr-0.5':
+        selectedKey === props.panel.key,
+      'text-surface-500 hover:text-surface-900 dark:text-muted-color dark:hover:text-color':
+        selectedKey !== props.panel.key,
     }"
     v-tooltip="{ value: props.panel.title, disabled: selectedKey === props.panel.key }"
     @click="setPanel(props.panel.key)"

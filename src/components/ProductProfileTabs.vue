@@ -10,7 +10,11 @@ const tabs = ref([
 
 <template>
   <div class="card">
-    <Tabs value="index" class="justify-between">
+    <Tabs
+      value="index"
+      class="justify-between"
+      :pt="{ root: 'border border-surface rounded-border' }"
+    >
       <TabList :pt="{ tablist: 'rounded-t-md' }">
         <Tab v-for="tab in tabs" :key="tab.label" :value="tab.label">
           <span class="flex items-center gap-2 text-inherit">

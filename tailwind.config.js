@@ -1,11 +1,21 @@
 // const { addIconSelectors } = require('@iconify/tailwind')
-const plugin = require('tailwindcss/plugin')
+// const plugin = require('tailwindcss/plugin')
 /** @type {import('tailwindcss').Config} */
+import PrimeUI from 'tailwindcss-primeui'
+
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
-  darkMode: 'class',
+  darkMode: ['selector', '[class~="app-dark"]'],
+  plugins: [PrimeUI, require('@tailwindcss/container-queries')],
   theme: {
     extend: {
+      containers: {
+        sm: '576px',
+        md: '768px',
+        lg: '992px',
+        xl: '1200px',
+        '2xl': '1920px',
+      },
       height: {
         workspace: 'calc(100vh - 20px)',
         'control-panel-content': 'calc(100vh - 65px - 20px)',
@@ -16,15 +26,12 @@ export default {
         // 'product-table-panel':
       },
     },
+    screens: {
+      sm: '576px',
+      md: '768px',
+      lg: '992px',
+      xl: '1200px',
+      '2xl': '1920px',
+    },
   },
-  plugins: [
-    // addIconSelectors(['mdi']),
-    // plugin(function ({ addBase, theme }) {
-    //   addBase({
-    //     h1: { fontSize: theme('fontSize.2xl') },
-    //     // h2: { fontSize: theme('fontSize.xl') },
-    //     // h3: { fontSize: theme('fontSize.lg') },
-    //   })
-    // }),
-  ],
 }

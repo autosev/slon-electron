@@ -537,8 +537,8 @@ provide('productProfile', {
 <template>
   <Dialog
     v-model:visible="isVisible"
-    class="!bg-slate-100"
-    :style="{ width: '727px' }"
+    class="!bg-surface-100 dark:!bg-surface-900"
+    :style="{ width: '730px' }"
     :draggable="false"
     :close-on-escape="false"
     modal

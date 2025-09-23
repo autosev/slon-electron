@@ -134,7 +134,7 @@ function updateSelectedFilterOption(filterOption: FilterOption) {
         <div>
           <!-- Header -->
           <div
-            class="flex justify-between items-center h-[64px] bg-slate-50 border-l border-slate-200"
+            class="flex justify-between items-center h-[64px] bg-surface-50 dark:bg-surface-900 border-l border-surface"
           >
             <div class="flex p-4 gap-3">
               <IconField>
@@ -224,7 +224,9 @@ function updateSelectedFilterOption(filterOption: FilterOption) {
             </Splitter>
           </div>
           <!-- Footer -->
-          <div class="flex justify-between p-4 h-[64px] bg-slate-50 border-l border-slate-200">
+          <div
+            class="flex justify-between p-4 h-[64px] bg-surface-50 dark:bg-surface-900 border-l border-surface"
+          >
             <div class="flex gap-3">
               <FindByBarcodeButton />
               <CreateProductButton v-if="hasCurrentUserPermission('product.create')" />

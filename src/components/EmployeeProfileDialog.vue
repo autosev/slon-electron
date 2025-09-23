@@ -184,7 +184,7 @@ async function updateEmployee() {
 <template>
   <Dialog
     v-model:visible="isVisible"
-    class="!bg-slate-100"
+    class="!bg-surface-100 dark:!bg-surface-900"
     :style="{ width: '600px' }"
     :draggable="false"
     :close-on-escape="false"
@@ -213,7 +213,7 @@ async function updateEmployee() {
         </FloatLabel>
       </div>
     </template>
-    <div class="bg-white rounded-lg px-5 pt-1 pb-5">
+    <div class="bg-surface-0 dark:bg-surface-900 rounded-lg px-5 pt-1 pb-5">
       <Fieldset legend="Контакты">
         <div class="flex justify-between px-4 py-2">
           <div class="min-w-32">

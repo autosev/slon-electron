@@ -64,7 +64,7 @@ const statusInfo = computed(() => {
       </div>
     </div>
     <div v-if="statusInfo !== undefined" class="flex gap-3 items-center">
-      <span class="mt-1 flex gap-3 text-xs text-end text-slate-500">
+      <span class="mt-1 flex gap-3 text-xs text-end text-muted-color">
         {{ statusInfo.dateText ?? 'Опубликована' }}:<br />
         {{ dayjs(props.created_at).format('L LTS') }}
       </span>

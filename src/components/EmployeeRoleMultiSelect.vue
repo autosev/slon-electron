@@ -34,7 +34,7 @@ watchEffect((onCleanup) => {
           <div>
             {{ option.name }}
           </div>
-          <div class="text-xs text-slate-500">
+          <div class="text-xs text-muted-color">
             {{ option.description }}
           </div>
         </div>

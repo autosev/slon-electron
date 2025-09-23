@@ -32,7 +32,7 @@ function showSelectedProductItem() {
 <template>
   <div
     v-show="selectedPanel !== null"
-    class="flex flex-col h-full justify-between bg-slate-100 w-full"
+    class="flex flex-col h-full justify-between bg-surface-100 dark:bg-surface-900 w-full"
   >
     <div v-if="selectedPanel?.hideTitle !== true" class="h-[64px] flex items-center px-6">
       <h2>{{ selectedPanel?.title }}</h2>

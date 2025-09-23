@@ -61,7 +61,6 @@ const productsCol: ComputedRef<ColDef[]> = computed(() => [
     field: 'id',
     headerName: 'Артикул',
     cellClass: 'text-center',
-    filter: 'agNumberColumnFilter',
     sortable: false,
     width: 120,
   },
@@ -95,25 +94,61 @@ const productsCol: ComputedRef<ColDef[]> = computed(() => [
 ])
 
 // to use myTheme in an application, pass it to the theme grid option
-const myTheme = themeQuartz.withPart(iconSetMaterial).withParams({
-  borderRadius: 6,
-  browserColorScheme: 'light',
-  // columnBorder: true,
-  fontFamily: 'inherit',
-  textColor: 'var(--p-slate-700)',
-  backgroundColor: '#fff',
-  headerFontSize: '1rem',
-  headerFontWeight: 600,
-  headerHeight: 47,
-  rowHeight: 32,
-  wrapperBorderRadius: 0,
-  borderColor: 'var(--p-slate-200)',
-  rowBorder: { color: 'var(--p-slate-200)' },
-  columnBorder: { color: 'var(--p-slate-200)' },
-  rangeSelectionBorderColor: 'var(--p-primary-color)',
-  rowHoverColor: 'var(--p-slate-100)',
-  selectedRowBackgroundColor: 'var(--p-slate-200)',
-})
+const myTheme = themeQuartz
+  .withPart(iconSetMaterial)
+  .withParams(
+    {
+      borderRadius: 6,
+      browserColorScheme: 'light',
+      // columnBorder: true,
+      fontFamily: 'inherit',
+      textColor: 'var(--p-text-color)',
+      backgroundColor: 'var(--p-surface-0)',
+      headerFontSize: '1rem',
+      headerFontWeight: 600,
+      headerHeight: 47,
+      rowHeight: 32,
+      wrapperBorderRadius: 0,
+      borderColor: 'var(--p-content-border-color)',
+      rowBorder: { color: 'var(--p-content-border-color)' },
+      columnBorder: { color: 'var(--p-content-border-color)' },
+      rangeSelectionBorderColor: 'var(--p-primary-color)',
+      rowHoverColor: 'var(--p-surface-100)',
+      selectedRowBackgroundColor: 'var(--p-content-border-color)',
+      buttonActiveBackgroundColor: 'var(--p-primary-color)',
+      iconButtonActiveBackgroundColor: 'var(--p-primary-color)',
+      iconButtonActiveColor: 'var(--p-primary-contrast-color)',
+      iconButtonActiveIndicatorColor: 'var(--p-primary-contrast-color)',
+    },
+    'app-light',
+  )
+  .withParams(
+    {
+      borderRadius: 6,
+      browserColorScheme: 'dark',
+      // columnBorder: true,
+      fontFamily: 'inherit',
+      textColor: 'var(--p-text-color)',
+      backgroundColor: 'var(--p-surface-950)',
+      headerFontSize: '1rem',
+      headerFontWeight: 600,
+      headerHeight: 47,
+      rowHeight: 32,
+      wrapperBorderRadius: 0,
+      borderColor: 'var(--p-content-border-color)',
+      rowBorder: { color: 'var(--p-content-border-color)' },
+      columnBorder: { color: 'var(--p-content-border-color)' },
+      rangeSelectionBorderColor: 'var(--p-primary-color)',
+      rowHoverColor: 'var(--p-surface-900)',
+      selectedRowBackgroundColor: 'var(--p-surface-800)',
+      menuBackgroundColor: 'var(--p-surface-900)',
+      buttonActiveBackgroundColor: 'var(--p-primary-color)',
+      iconButtonActiveBackgroundColor: 'var(--p-primary-color)',
+      iconButtonActiveColor: 'var(--p-primary-contrast-color)',
+      iconButtonActiveIndicatorColor: 'var(--p-primary-contrast-color)',
+    },
+    'app-dark',
+  )
 
 const gridApi = ref<GridApi | null>(null)
 
@@ -295,7 +330,9 @@ watch(selectedCollectionId, () => {
     gridApi.value.ensureIndexVisible(0, 'top')
   }
 })
-
+// onMounted(() => {
+//   document.body.dataset.agThemeMode = 'app-dark'
+// })
 // onMounted(() => {
 //   ProductShipments.on('updateOne', ({ id }) => {
 //     if (gridApi.value !== null) {
@@ -339,7 +376,7 @@ watch(selectedCollectionId, () => {
   <!-- {{ productTableData }} -->
   <div
     v-if="selectedCollectionId === 0"
-    class="flex w-full h-product-table border-l border-t border-b border-slate-200"
+    class="flex w-full h-product-table border-l border-t border-b border-surface"
   >
     <EmptyCard description="Выберите коллекцию для показа остатков товара на складе." />
   </div>

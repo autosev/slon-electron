@@ -110,6 +110,7 @@ declare module 'vue' {
     Skeleton: typeof import('primevue/skeleton')['default']
     Splitter: typeof import('primevue/splitter')['default']
     SplitterPanel: typeof import('primevue/splitterpanel')['default']
+    StatusBar: typeof import('./src/components/StatusBar.vue')['default']
     StockSelect: typeof import('./src/components/StockSelect.vue')['default']
     Tab: typeof import('primevue/tab')['default']
     Table: typeof import('./src/components/Table.vue')['default']

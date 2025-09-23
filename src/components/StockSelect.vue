@@ -43,9 +43,19 @@ const { organizations } = storeToRefs(organizationStore)
             v-if="currentEmployee !== null && slotProps.option.id === currentEmployee.stock_id"
             severity="success"
             value="Мой"
+            :pt="{ root: 'dark:!bg-green-900' }"
           />
-          <Tag v-else-if="slotProps.option.note === 'Основной'" severity="info" value="Основной" />
-          <Tag v-else-if="slotProps.option.note" :value="slotProps.option.note" />
+          <Tag
+            v-else-if="slotProps.option.note === 'Основной'"
+            severity="info"
+            value="Основной"
+            :pt="{ root: 'dark:!bg-sky-900' }"
+          />
+          <Tag
+            v-else-if="slotProps.option.note"
+            :value="slotProps.option.note"
+            :pt="{ root: 'dark:!bg-surface-700' }"
+          />
         </div>
       </template>
     </Select>

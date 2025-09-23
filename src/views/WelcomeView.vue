@@ -57,17 +57,21 @@ onMounted(() => {
 
 <template>
   <div class="flex w-full h-full">
-    <div class="flex flex-col w-2/6 bg-slate-100 justify-center items-center text-center gap-4">
+    <div
+      class="flex flex-col w-2/6 bg-surface-100 dark:bg-surface-900 justify-center items-center text-center gap-4"
+    >
       <i class="pi pi-users !text-2xl"></i>
       <div>
         <h1 class="font font-medium">Добрый день</h1>
-        <span class="text-slate-600 px-4">Выберите пользователя из списка или добавьте нового</span>
+        <span class="text-slate-600 dark:text-muted-color px-4"
+          >Выберите пользователя из списка или добавьте нового</span
+        >
         <Message size="small" icon="pi pi-exclamation-triangle" severity="warn" class="mt-4 mx-10">
           Система учёта находится в стадии тестирования. Данные в программе не являются актуальными.
         </Message>
       </div>
     </div>
-    <div class="card flex w-4/6 justify-center items-center">
+    <div class="flex w-4/6 justify-center items-center">
       <div class="flex flex-col gap-4 w-full sm:w-64">
         <InputGroup>
           <InputGroupAddon>

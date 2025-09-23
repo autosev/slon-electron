@@ -22,7 +22,11 @@ onActivated(() => {
 </script>
 
 <template>
-  <Tabs v-model:value="selectedTab" scrollable>
+  <Tabs
+    v-model:value="selectedTab"
+    :pt="{ root: 'border border-surface rounded-border' }"
+    scrollable
+  >
     <TabList :pt="{ tablist: 'rounded-t-md', root: '!sticky top-0 z-10' }">
       <Tab v-for="tab in tabs" :key="tab.label" :value="tab.label">
         <div class="flex gap-2">

@@ -45,7 +45,7 @@ const columnDefs: ColDef[] = [
   {
     field: 'product_item_id',
     headerName: 'Артикул',
-    headerClass: 'border-r',
+    headerClass: 'border-r border-surface',
     cellClass: 'text-center',
     maxWidth: 91,
     resizable: false,
@@ -111,7 +111,9 @@ function openProductProfile({ product_item_id }: { product_item_id: ProductItem[
 </script>
 
 <template>
-  <div class="rounded-md bg-white p-4 flex flex-col gap-4">
+  <div
+    class="rounded-md bg-surface-0 dark:bg-surface-900 border border-surface p-4 flex flex-col gap-4"
+  >
     <StockSelect v-model:id="selectedStockId" />
     <TableEditor
       :columnDefs="columnDefs"

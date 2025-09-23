@@ -18,15 +18,17 @@ const soredDrafts = computed(() =>
     Черновики — твои сохраненные накладные, которые доступны всем только на этом компьютере. К их
     редактированию можно вернуться в любой момент. Не забудь удалить ненужные.
   </Message>
-  <div v-if="soredDrafts.length > 0" class="flex flex-col gap-3">
-    <InvoiceCard
-      v-for="draft in soredDrafts"
-      :key="draft.id"
-      :data="draft"
-      @click="emit('open', draft.id)"
-    />
-  </div>
-  <div v-else class="mt-5">
-    <EmptyCard description="Сохраненные накладные на этом компьютере не найдены." />
+  <div class="@container">
+    <div class="grid grid-cols-1 @[1000px]:grid-cols-2 @[1470px]:grid-cols-3 gap-3">
+      <InvoiceCard
+        v-for="draft in soredDrafts"
+        :key="draft.id"
+        :data="draft"
+        @click="emit('open', draft.id)"
+      />
+    </div>
+    <!-- <div v-else class="mt-5">
+      <EmptyCard description="Сохраненные накладные на этом компьютере не найдены." />
+    </div> -->
   </div>
 </template>

@@ -120,9 +120,24 @@ onMounted(() => {
 onUnmounted(() => {
   endSession()
 })
+
+// import EventBus from '@/app/AppEventBus'
+// function toggleDarkMode() {
+//   EventBus.emit('dark-mode-toggle', { dark: !this.$appState.darkTheme })
+// }
+
+function toggleDarkMode() {
+  if (document.documentElement.classList.contains('app-dark') === true) {
+    document.body.dataset.agThemeMode = 'app-light'
+  } else {
+    document.body.dataset.agThemeMode = 'app-dark'
+  }
+  document.documentElement.classList.toggle('app-dark')
+}
 </script>
 
 <template>
+  <!-- <Button label="dark" @click="toggleDarkMode" /> -->
   <!-- {{ servers }} -->
   <DynamicDialog />
   <ConfirmDialog />
@@ -131,7 +146,10 @@ onUnmounted(() => {
   <div class="h-workspace font-base">
     <router-view />
   </div>
-  <div class="bg-slate-400 h-[20px] text-[11px] flex justify-between items-center text-slate-800">
+  <StatusBar />
+  <!-- <div
+    class="bg-surface-100 dark:bg-surface-800 h-[20px] text-[11px] flex justify-between items-center text-surface-800 dark:text-color border-t border-surface"
+  >
     <div class="flex items-center">
       <Menu ref="statusMenu" :model="statusMenuOptions" popup>
         <template #item="{ item, props }">
@@ -149,9 +167,11 @@ onUnmounted(() => {
         </template>
       </Menu>
       <div
-        class="flex h-[20px] px-[12px] items-center cursor-pointer select-none"
+        class="flex h-[20px] px-[12px] items-center cursor-pointer select-none text-color"
         :class="
-          isOnline === true ? 'bg-green-300 hover:bg-green-200' : 'bg-red-300 hover:bg-red-200'
+          isOnline === true
+            ? 'bg-green-300 hover:bg-green-200 dark:bg-green-600 dark:hover:bg-green-700'
+            : 'bg-red-300 hover:bg-red-200'
         "
         @click="showStatusMenu"
       >
@@ -159,15 +179,9 @@ onUnmounted(() => {
         <span v-else-if="isServerOnline === false">Сервер не в сети</span>
         <span v-else>В сети</span>
       </div>
-      <!-- <div
-        class="flex h-[20px] px-[12px] items-center gap-[8px] hover:bg-slate-300 cursor-pointer select-none"
-      >
-        <i class="pi pi-server !text-[11px]"></i>
-        <span> sb.autopilot-sev.ru </span>
-      </div> -->
       <div
         v-if="lastSyncDate !== null && route.name === 'workspace'"
-        class="flex h-[20px] px-[12px] items-center gap-[8px] hover:bg-slate-300 cursor-pointer select-none"
+        class="flex h-[20px] px-[12px] items-center gap-[8px] hover:bg-surface-300 cursor-pointer select-none"
         @click="syncManager.syncAll()"
       >
         <i class="pi pi-sync !text-[11px]" :class="{ 'pi-spin': isSyncing }"></i>
@@ -186,11 +200,21 @@ onUnmounted(() => {
         </span>
       </div>
     </div>
-    <div
-      class="flex h-[20px] px-[12px] items-center hover:bg-slate-300 cursor-pointer select-none"
-      @click="openReleaseNotesDialog()"
-    >
-      <span>Версия: {{ version }}</span>
+    <div class="flex items-center divide-x border-l border-surface">
+      <div
+        class="flex h-[20px] px-[12px] items-center hover:bg-surface-300 cursor-pointer select-none"
+        @click="toggleDarkMode"
+      >
+        <i class="pi pi-moon !text-[10px] mr-2"></i>
+        <span>Тёмный режим</span>
+      </div>
+      <div
+        class="flex h-[20px] px-[12px] items-center hover:bg-surface-300 cursor-pointer select-none"
+        @click="openReleaseNotesDialog()"
+      >
+        <i class="pi pi-code mr-2 !text-[11px]"></i>
+        <span>Версия: {{ version }}</span>
+      </div>
     </div>
-  </div>
+  </div> -->
 </template>

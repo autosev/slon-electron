@@ -57,7 +57,7 @@ const columnDefs: ComputedRef<ColDef[]> = computed(() => [
   {
     field: 'product_item_id',
     headerName: 'Артикул',
-    headerClass: 'border-r',
+    headerClass: 'border-r border-surface',
     cellClass: 'text-center',
     maxWidth: 91,
     resizable: false,
