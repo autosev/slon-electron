@@ -102,11 +102,15 @@ const columnDefs: ComputedRef<ColDef[]> = computed(() => [
         { id: p.data.product_item_id },
         { reactive: false },
       ) as ProductItem
-      const { name } = ProductBrands.findOne(
-        { id: product_brand_id },
-        { reactive: false },
-      ) as ProductBrand
-      return name
+
+      if (product_brand_id) {
+        const { name } = ProductBrands.findOne(
+          { id: product_brand_id },
+          { reactive: false },
+        ) as ProductBrand
+        return name
+      }
+      return ''
     },
   },
   {

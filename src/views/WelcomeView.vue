@@ -56,7 +56,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex w-full h-full">
+  <div class="flex w-full h-full select-none">
     <div
       class="flex flex-col w-2/6 bg-surface-100 dark:bg-surface-900 justify-center items-center text-center gap-4"
     >
@@ -71,19 +71,41 @@ onMounted(() => {
         </Message>
       </div>
     </div>
-    <div class="flex w-4/6 justify-center items-center">
-      <div class="flex flex-col gap-4 w-full sm:w-64">
+    <div class="flex w-4/6 justify-center items-center select-none">
+      <div class="flex flex-col gap-4 w-72">
         <InputGroup>
           <InputGroupAddon>
-            <i class="pi pi-server"></i>
+            <i class="pi pi-server text-green-500"></i>
           </InputGroupAddon>
-          <FloatLabel variant="on">
+          <FloatLabel variant="on" class="!w-[15.5rem]">
             <Select
-              value="sb.autopilot-sev.ru"
-              :options="['sb.autopilot-sev.ru']"
-              icon="pi pi-server"
+              value="uuid-1"
+              optionValue="id"
+              optionLabel="name"
+              :options="[
+                {
+                  id: 'uuid-1',
+                  name: 'Рабочий сервер (Coolify)',
+                  apiUrl: 'https://my-supabase.example.com',
+                  anonKey: 'eyJhbGci...',
+                },
+                {
+                  id: 'uuid-2',
+                  name: 'Тестовый сервер (новый)',
+                  apiUrl: 'http://192.168.1.10:8000',
+                  anonKey: 'eyJhbGci...',
+                },
+              ]"
               id="server"
             >
+              <template #option="{ option }">
+                <div>
+                  <div>{{ option.name }}</div>
+                  <div class="text-xs">
+                    {{ option.apiUrl.replace(/^(https?|ftp):\/\//, '') }}
+                  </div>
+                </div>
+              </template>
               <template #footer>
                 <div class="p-1">
                   <Button
