@@ -33,6 +33,7 @@ watchEffect((onCleanup) => {
       :options="countriesOptions"
       class="w-full"
       optionLabel="name"
+      optionValue="id"
       labelId="on_product_brand"
       filter
       @update:model-value="(value) => emit('update:id', value)"
