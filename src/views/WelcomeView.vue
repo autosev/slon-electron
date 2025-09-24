@@ -58,7 +58,7 @@ onMounted(() => {
 <template>
   <div class="flex w-full h-full select-none">
     <div
-      class="flex flex-col w-2/6 bg-surface-100 dark:bg-surface-900 justify-center items-center text-center gap-4"
+      class="flex flex-col w-2/6 bg-surface-100 dark:bg-surface-900 justify-center items-center text-center gap-4 border-r border-surface"
     >
       <i class="pi pi-users !text-2xl"></i>
       <div>
@@ -71,96 +71,105 @@ onMounted(() => {
         </Message>
       </div>
     </div>
-    <div class="flex w-4/6 justify-center items-center select-none">
-      <div class="flex flex-col gap-4 w-72">
-        <InputGroup>
-          <InputGroupAddon>
-            <i class="pi pi-server text-green-500"></i>
-          </InputGroupAddon>
-          <FloatLabel variant="on" class="!w-[15.5rem]">
-            <Select
-              value="uuid-1"
-              optionValue="id"
-              optionLabel="name"
-              :options="[
-                {
-                  id: 'uuid-1',
-                  name: 'Рабочий сервер (Coolify)',
-                  apiUrl: 'https://my-supabase.example.com',
-                  anonKey: 'eyJhbGci...',
-                },
-                {
-                  id: 'uuid-2',
-                  name: 'Тестовый сервер (новый)',
-                  apiUrl: 'http://192.168.1.10:8000',
-                  anonKey: 'eyJhbGci...',
-                },
-              ]"
-              id="server"
-            >
-              <template #option="{ option }">
-                <div>
-                  <div>{{ option.name }}</div>
-                  <div class="text-xs">
-                    {{ option.apiUrl.replace(/^(https?|ftp):\/\//, '') }}
+    <div class="flex w-4/6 justify-center items-center select-none dark:bg-surface-900">
+      <div class="flex flex-col gap-4 w-80">
+        <div class="flex gap-4">
+          <InputGroup>
+            <InputGroupAddon>
+              <i class="pi pi-server"></i>
+            </InputGroupAddon>
+            <FloatLabel variant="on" class="!w-[14rem]">
+              <Select
+                value="uuid-1"
+                optionValue="id"
+                optionLabel="name"
+                :options="[
+                  {
+                    id: 'uuid-1',
+                    name: 'Рабочий сервер (Coolify)',
+                    apiUrl: 'https://my-supabase.example.com',
+                    anonKey: 'eyJhbGci...',
+                  },
+                  {
+                    id: 'uuid-2',
+                    name: 'Тестовый сервер (новый)',
+                    apiUrl: 'http://192.168.1.10:8000',
+                    anonKey: 'eyJhbGci...',
+                  },
+                ]"
+                id="server"
+              >
+                <template #option="{ option }">
+                  <div>
+                    <div>{{ option.name }}</div>
+                    <div class="text-xs">
+                      {{ option.apiUrl.replace(/^(https?|ftp):\/\//, '') }}
+                    </div>
                   </div>
-                </div>
-              </template>
-              <template #footer>
-                <div class="p-1">
-                  <Button
-                    label="Добавить новый"
-                    fluid
-                    severity="secondary"
-                    variant="text"
-                    size="small"
-                    icon="pi pi-plus"
-                    @click="router.push({ name: 'server' })"
-                  />
-                </div>
-              </template>
-            </Select>
-            <label for="server">Сервер</label>
-          </FloatLabel>
-        </InputGroup>
-
-        <Divider />
-
-        <div class="flex justify-center">
-          <Listbox
-            v-model="selectedUser"
-            :options="users"
-            optionLabel="name"
-            class="w-full"
-            :filter="users.length > 5"
-            filterPlaceholder="Найти себя"
-          >
-            <template #option="{ option }">
-              <EmployeeAvatar :id="option.id" :size="28" class="mr-2" />
-              {{ option.name }}
-            </template>
-            <template #empty> Нет добавленных пользователей. </template>
-          </Listbox>
+                </template>
+                <template #footer>
+                  <div class="p-1">
+                    <Button
+                      label="Добавить новый"
+                      fluid
+                      severity="secondary"
+                      variant="text"
+                      size="small"
+                      icon="pi pi-plus"
+                      @click="router.push({ name: 'server' })"
+                    />
+                  </div>
+                </template>
+              </Select>
+              <label for="server">Сервер</label>
+            </FloatLabel>
+          </InputGroup>
+          <div>
+            <Button icon="pi pi-ellipsis-v" severity="primary" variant="outlined" />
+          </div>
         </div>
-        <div>
-          <Button
-            type="submit"
-            label="Войти"
-            icon="pi pi-sign-in"
-            :disabled="selectedUser === null"
-            @click="submit"
-            fluid
-          />
-          <Button
-            type="submit"
-            severity="secondary"
-            label="Добавить пользователя"
-            icon="pi pi-user-plus"
-            class="mt-3"
-            fluid
-            @click="router.push({ name: 'user-login' })"
-          />
-        </div>
+
+        <Fieldset v-if="users.length > 0" legend="Пользователи">
+          <div class="flex flex-col gap-5 p-2">
+            <div class="flex justify-center">
+              <Listbox
+                v-model="selectedUser"
+                :options="users"
+                optionLabel="name"
+                class="w-full"
+                :filter="users.length > 5"
+                filterPlaceholder="Найти себя"
+                :pt="{ root: '!rounded-xl', option: '!rounded-lg' }"
+              >
+                <template #option="{ option }">
+                  <EmployeeAvatar :id="option.id" :size="28" class="mr-2" />
+                  {{ option.name }}
+                </template>
+                <template #empty> Нет добавленных пользователей. </template>
+              </Listbox>
+            </div>
+            <div>
+              <Button
+                type="submit"
+                label="Войти"
+                icon="pi pi-sign-in"
+                :disabled="selectedUser === null"
+                @click="submit"
+                fluid
+                rounded
+              />
+            </div>
+          </div>
+        </Fieldset>
+        <Button
+          type="submit"
+          severity="secondary"
+          label="Добавить пользователя"
+          icon="pi pi-user-plus"
+          class="mt-3"
+          fluid
+          @click="router.push({ name: 'user-login' })"
+        />
       </div>
     </div>
   </div>

@@ -6,7 +6,7 @@ const toast = useToast()
 <template>
   <div class="flex w-full h-full">
     <div
-      class="flex flex-col w-2/6 bg-surface-100 dark:bg-surface-900 justify-center items-center gap-4"
+      class="flex flex-col w-2/6 bg-surface-100 dark:bg-surface-900 justify-center items-center gap-4 border-r border-surface"
     >
       <i class="pi pi-arrow-right-arrow-left !text-2xl"></i>
       <div>
@@ -17,7 +17,7 @@ const toast = useToast()
       </div>
       <div></div>
     </div>
-    <div class="card flex w-4/6 justify-center items-center">
+    <div class="card flex w-4/6 justify-center items-center dark:bg-surface-950">
       <div class="flex flex-col gap-4 max-w-64">
         <FloatLabel variant="on">
           <InputText id="on_server_name" :feedback="false" toggleMask fluid />

@@ -8,7 +8,7 @@ const users = ref(getUsers()) // getServers
 <template>
   <div class="flex w-full h-full">
     <div
-      class="flex flex-col w-2/6 bg-slate-100 dark:bg-surface-900 justify-center items-center gap-4"
+      class="flex flex-col w-2/6 bg-slate-100 dark:bg-surface-900 justify-center items-center gap-4 border-r border-surface"
     >
       <i class="pi pi-server !text-2xl"></i>
       <div>
@@ -19,7 +19,7 @@ const users = ref(getUsers()) // getServers
       </div>
       <div></div>
     </div>
-    <div class="card flex w-4/6 justify-center items-center">
+    <div class="card flex w-4/6 justify-center items-center dark:bg-surface-950">
       <div class="flex flex-col gap-4">
         <Button
           label="Добавить подключение"

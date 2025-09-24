@@ -96,7 +96,7 @@ function goBack() {
 <template>
   <div class="flex w-full h-full">
     <div
-      class="flex flex-col w-2/6 bg-slate-100 dark:bg-surface-900 justify-center items-center gap-4"
+      class="flex flex-col w-2/6 bg-slate-100 dark:bg-surface-900 justify-center items-center gap-4 border-r border-surface"
     >
       <i class="pi pi-user-plus !text-2xl"></i>
       <div>
@@ -106,7 +106,7 @@ function goBack() {
         </p>
       </div>
     </div>
-    <div class="flex w-4/6 justify-center items-center">
+    <div class="flex w-4/6 justify-center items-center dark:bg-surface-950">
       <Transition
         mode="out-in"
         enter-active-class="transition-opacity duration-300"
