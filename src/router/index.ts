@@ -33,6 +33,11 @@ const router = createRouter({
       component: () => import('../views/ServerConnectView.vue'),
     },
     {
+      path: '/server/sync',
+      name: 'server-sync',
+      component: () => import('../views/ServerSyncView.vue'),
+    },
+    {
       path: '/user/login',
       name: 'user-login',
       component: () => import('../views/UserLoginView.vue'),
