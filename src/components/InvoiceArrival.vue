@@ -43,7 +43,9 @@ onActivated(() => {
           icon="pi pi-calendar-plus"
           severity="primary"
           variant="outlined"
+          size="small"
           @click="createEditor()"
+          rounded
         />
       </div>
     </TabList>

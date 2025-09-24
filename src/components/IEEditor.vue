@@ -183,7 +183,7 @@ const columnDefs: ComputedRef<ColDef[]> = computed(() => [
           invoiceShipmentsAvailability.value[p.rowIndex] =
             shipment.quantity >= p.data.quantity * productPackage?.conversion_factor
           if (invoiceShipmentsAvailability.value[p.rowIndex] === false) {
-            return 'bg-rose-200'
+            return 'bg-rose-200 dark:bg-red-950'
           }
         }
       }

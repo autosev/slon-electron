@@ -23,7 +23,7 @@ function updateProductBrandOptions() {
   const values = new Set<string>()
   props.params.api.forEachNode((node) => {
     const value = props.params.api.getCellValue({ rowNode: node, colKey: 'product_brand_name' })
-    if (value != null) {
+    if (value) {
       values.add(value)
     }
   })
