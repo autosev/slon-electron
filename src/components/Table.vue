@@ -158,28 +158,27 @@ function onGridReady(params: GridReadyEvent) {
 
 function selectProductOnTable() {
   if (selectedProductItemId.value !== null) {
-    const selectedData = gridApi.value!.getSelectedRows()
-    if (
-      selectedData.length === 0 ||
-      (selectedData.length > 0 && selectedProductItemId.value !== selectedData[0].id)
-    ) {
-      gridApi.value!.forEachNode((node) => {
-        if (node.data.id === selectedProductItemId.value && !node.isSelected()) {
-          node.setSelected(true)
-          if (hasScrollToSelectedProduct.value === true) {
-            gridApi.value?.ensureNodeVisible(node, 'middle')
+    requestAnimationFrame(() => {
+      const selectedData = gridApi.value!.getSelectedRows()
+      if (
+        selectedData !== null &&
+        (selectedData.length === 0 ||
+          (selectedData.length > 0 && selectedProductItemId.value !== selectedData[0].id))
+      ) {
+        gridApi.value!.forEachNode((node) => {
+          if (node.data.id === selectedProductItemId.value && !node.isSelected()) {
+            node.setSelected(true)
+            if (hasScrollToSelectedProduct.value === true) {
+              gridApi.value?.ensureNodeVisible(node, 'middle')
+            }
           }
-        }
-      })
-    }
+        })
+      }
+    })
   } else if (gridApi.value !== null) {
     const selectedData = gridApi.value!.getSelectedRows()
     if (selectedData.length > 0) {
-      gridApi.value!.forEachNode((node) => {
-        if (node.isSelected()) {
-          node.setSelected(false)
-        }
-      })
+      gridApi.value.deselectAll()
     }
   }
 }
