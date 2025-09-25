@@ -123,6 +123,7 @@ declare global {
   const useSupabase: typeof import('./src/composables/supabase')['useSupabase']
   const useTableStore: typeof import('./src/stores/table')['useTableStore']
   const useTemplateRef: typeof import('vue')['useTemplateRef']
+  const useTheme: typeof import('./src/composables/theme')['useTheme']
   const useToast: typeof import('primevue/usetoast')['useToast']
   const useTools: typeof import('./src/composables/tools')['useTools']
   const useVueToPrint: typeof import('vue-to-print')['useVueToPrint']

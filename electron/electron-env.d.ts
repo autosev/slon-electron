@@ -26,8 +26,14 @@ interface IElectronStore {
   set: (key: string, value: any) => Promise<void>
 }
 
+interface IThemeAPI {
+  set: (theme: 'light' | 'dark' | 'system') => Promise<void>
+  getDarkStatus: () => Promise<boolean>
+}
+
 // Used in Renderer process, expose in `preload.ts`
 interface Window {
   ipcRenderer: import('electron').IpcRenderer
   electronStore: IElectronStore
+  theme: IThemeAPI
 }

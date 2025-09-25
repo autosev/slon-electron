@@ -3,25 +3,26 @@ import { version } from '../../package.json'
 
 const route = useRoute()
 const clientStore = useClientStore()
+const { isDark, toggleTheme } = useTheme()
 const { isClientOnline, isServerOnline, lastSyncDate, isSyncing, isOnline } =
   storeToRefs(clientStore)
 
-const isDarkMode = ref(false)
+// const isDarkMode = ref(false)
 
-function toggleDarkMode() {
-  if (isDarkMode.value === true) {
-    document.body.dataset.agThemeMode = 'app-light'
-  } else {
-    document.body.dataset.agThemeMode = 'app-dark'
-  }
-  isDarkMode.value = !isDarkMode.value
-  document.documentElement.classList.toggle('app-dark')
-}
+// function toggleDarkMode() {
+//   if (isDarkMode.value === true) {
+//     document.body.dataset.agThemeMode = 'app-light'
+//   } else {
+//     document.body.dataset.agThemeMode = 'app-dark'
+//   }
+//   isDarkMode.value = !isDarkMode.value
+//   document.documentElement.classList.toggle('app-dark')
+// }
 
-onMounted(() => {
-  isDarkMode.value = document.documentElement.classList.contains('app-dark')
-  toggleDarkMode()
-})
+// onMounted(() => {
+//   isDarkMode.value = document.documentElement.classList.contains('app-dark')
+//   toggleDarkMode()
+// })
 </script>
 
 <template>
@@ -98,10 +99,10 @@ onMounted(() => {
     >
       <div
         class="flex items-center gap-2 h-full px-3 hover:bg-surface-200 active:bg-surface-300 dark:hover:bg-surface-700 dark:active:bg-surface-600"
-        @click="toggleDarkMode"
+        @click="toggleTheme"
       >
-        <i class="pi !text-xs" :class="isDarkMode ? 'pi-moon' : 'pi-sun'"></i>
-        <span>{{ isDarkMode ? 'Тёмный режим' : 'Светлый режим' }}</span>
+        <i class="pi !text-xs" :class="isDark ? 'pi-moon' : 'pi-sun'"></i>
+        <span>{{ isDark ? 'Тёмный режим' : 'Светлый режим' }}</span>
       </div>
       <div
         class="flex items-center gap-2 h-full px-3 hover:bg-surface-200 active:bg-surface-300 dark:hover:bg-surface-700 dark:active:bg-surface-600"

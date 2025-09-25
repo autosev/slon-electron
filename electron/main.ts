@@ -1,4 +1,12 @@
-import { app, BrowserWindow, Menu, Tray, MenuItemConstructorOptions, ipcMain } from 'electron'
+import {
+  app,
+  BrowserWindow,
+  Menu,
+  Tray,
+  MenuItemConstructorOptions,
+  ipcMain,
+  nativeTheme,
+} from 'electron'
 import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import { makeUserNotifier, updateElectronApp, UpdateSourceType } from 'update-electron-app'
@@ -238,11 +246,21 @@ process.on('SIGINT', () => {
 const store = new Store()
 
 // Обработчик для получения значения из хранилища
-ipcMain.handle('electron-store-get', async (event, key) => {
+ipcMain.handle('electron-store-get', async (_event, key) => {
   return store.get(key)
 })
 
 // Обработчик для сохранения значения в хранилище
-ipcMain.handle('electron-store-set', async (event, key, value) => {
+ipcMain.handle('electron-store-set', async (_event, key, value) => {
   store.set(key, value)
+})
+
+// Отправляем запрос от UI в Electron с просьбой установить источник темы
+ipcMain.handle('theme:set', (_event, source: 'light' | 'dark' | 'system') => {
+  nativeTheme.themeSource = source
+})
+
+// Вызывается из UI, чтобы узнать, активна ли темная тема в ОС
+ipcMain.handle('theme:get-dark-status', () => {
+  return nativeTheme.shouldUseDarkColors
 })

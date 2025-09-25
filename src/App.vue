@@ -93,6 +93,9 @@ onMounted(() => {
   const { loadServers } = useServers()
   loadServers()
 
+  const { loadTheme } = useTheme()
+  loadTheme()
+
   const { supabase } = useSupabase()
   supabase.auth.onAuthStateChange((event, session) => {
     if (event === 'SIGNED_IN') {

@@ -28,3 +28,8 @@ contextBridge.exposeInMainWorld('electronStore', {
   set: (key: string, value: any) => ipcRenderer.invoke('electron-store-set', key, value),
   // При желании можно добавить и другие методы, например, delete
 })
+
+contextBridge.exposeInMainWorld('theme', {
+  set: (theme: 'light' | 'dark' | 'system') => ipcRenderer.invoke('theme:set', theme),
+  getDarkStatus: () => ipcRenderer.invoke('theme:get-dark-status'),
+})
